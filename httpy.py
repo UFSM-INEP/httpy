@@ -37,9 +37,9 @@ def get_one(url: str, http: Session = None) -> Response:
     logger.info(f'GET \'{url}\'.')
 
     if http:
-        response = http.get(url, timeout=5)
+        response = http.get(url, timeout=10)
     else:
-        response = requests.get(url, timeout=5)
+        response = requests.get(url, timeout=10)
 
     response.raise_for_status()
 
@@ -66,7 +66,7 @@ def get_multiple(urls: List[str], max_workers: int = 10) -> List[Response]:
         retry = Retry(
             total=5,
             backoff_factor=0.1,
-            status_forcelist=[500, 502, 503, 504]
+            status_forcelist=[408, 500, 502, 503, 504]
         )
 
         if urls:
