@@ -6,6 +6,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from urllib.parse import urlparse
 
+from typing import List
+
 import logging
 
 
@@ -46,7 +48,7 @@ def get_one(url: str, http: Session = None) -> Response:
     return response
 
 
-def get_multiple(urls: list[str], max_workers: int = 10) -> list[Response]:
+def get_multiple(urls: List[str], max_workers: int = 10) -> List[Response]:
     '''
     Realiza o download do conteúdo de múltiplas URLs concorrentemente usando um pool de threads.
 
