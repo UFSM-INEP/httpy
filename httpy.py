@@ -37,9 +37,9 @@ def get_one(url: str, http: Session = None) -> Response:
     logger.info(f'GET \'{url}\'.')
 
     if http:
-        response = http.get(url)
+        response = http.get(url, timeout=5)
     else:
-        response = requests.get(url)
+        response = requests.get(url, timeout=5)
 
     response.raise_for_status()
 
